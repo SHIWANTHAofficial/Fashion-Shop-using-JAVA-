@@ -2,39 +2,80 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package fashion.shop;
+package fashion.shop.using.oop;
 
-import java.util.Scanner;
+import java.util.*;
 
 /**
  *
  * @author Prasad
  */
-public class FashionShop {
+class Customer {
 
-    public static Scanner input = new Scanner(System.in);
+    private String orderId;
+    private String phoenumber;
+    private String size1;
+    private int qty;
+    private double amount;
+    private String Orderstatus;
 
-    public static String[] orderId = {"ORD#00001", "ORD#00002", "ORD#00003", "ORD#00004"};
-    public static String[] phoenumber = {"0741741744", "0741741741", "0852852852", "0760684578"};
-    public static String size1[] = {"S", "M", "XL", "xs"};
-    public static int qty[] = {4, 6, 5, 10};
-    public static double amount[] = {2400.00, 7000.00, 5500.00, 6000.00};
-    public static String[] Orderstatus = {"PROCESSING", "DELIVERING", "DELIVERED", "DELIVERING"};
-    public final static String[] Status = {"PROCESSING", "DELIVERING", "DELIVERED"};
-    
-    static final String[] finalStatus = {"Processing", "Delivering", "Delivered"};
+    public Customer(String id, String pnumber, String size, int qty1, double amount1, String oderstatus1) {
 
-//    public static String[] orderId = new String[0];
-//    public static String[] phoenumber = new String[0];
-//    public static int qty[] = new int[0];
-//    public static double amount[] = new double[0];
-//    public static String size1[] = new String[0];
-//    public static String[] Orderstatus = new String[0];
-    public static int count = orderId.length;
-    
-    
-    
-     public final static void clearConsole() {
+        this.orderId = id;
+        this.phoenumber = pnumber;
+        this.qty = qty1;
+        this.size1 = size;
+        this.amount = amount1;
+        this.Orderstatus = oderstatus1;
+
+    }
+
+    public void showoder(int i) {
+
+        System.out.println("");
+        System.out.printf("%-16s%2s%n", "Phone number", ": " + phoenumber);
+        System.out.printf("%-16s%2s%n", "Size", ": " + size1);
+        System.out.printf("%-16s%2s%n", "QTY", ": " + qty);
+        System.out.printf("%-16s%2s%n", "Amount", ": " + amount);
+        System.out.printf("%-16s%2s%n", "Status", ": " + Orderstatus + "\n");
+
+    }
+
+    public void setstatus(String status) {
+
+        this.Orderstatus = status;
+
+    }
+
+    public String getid() {
+        return orderId;
+    }
+
+    public String getphonenumber() {
+        return phoenumber;
+    }
+
+    public String getsize() {
+        return size1;
+    }
+
+    public int getqty() {
+        return qty;
+    }
+
+    public Double getamount() {
+        return amount;
+    }
+
+    public String getstatus() {
+        return Orderstatus;
+    }
+
+}
+
+public class FashionShopUsingOOP {
+
+    public final static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
             if (os.contains("Windows")) {
@@ -48,9 +89,8 @@ public class FashionShop {
 // Handle any exceptions.
         }
     }
-     
-     
-         public static void clearline(int i) {
+
+    public static void clearline(int i) {
         // Move the cursor up five lines
         System.out.print("\033[" + i + "A");
 // Clear the lines
@@ -58,63 +98,23 @@ public class FashionShop {
 
     }
 
-    public static void declement() {
+    public static Scanner input = new Scanner(System.in);
 
-        String[] tempPhoneN = new String[phoenumber.length - 1];
-        int[] tempqty = new int[qty.length - 1];
-        double[] tempamount = new double[amount.length - 1];
-        String[] tempsize = new String[size1.length - 1];
-        String[] temporderid = new String[orderId.length - 1];
-        String[] tempstatus = new String[Orderstatus.length - 1];
+    public final static String[] finalStatus = {"PROCESSING", "DELIVERING", "DELIVERED"};
 
-        for (int i = 0; i < tempPhoneN.length; i++) {
-            tempPhoneN[i] = phoenumber[i];
-            tempqty[i] = qty[i];
-            tempamount[i] = amount[i];
-            tempsize[i] = size1[i];
-            temporderid[i] = orderId[i];
-            tempstatus[i] = Orderstatus[i];
+    public static int count = 0;
+
+    static Customer[] Customers = new Customer[0];
+
+    public static Customer[] extendIntArrays(Customer[] arr) {
+        Customer temp[] = new Customer[arr.length + 1];
+        for (int i = 0; i < arr.length; i++) {
+            temp[i] = arr[i];
         }
-
-        phoenumber = tempPhoneN;
-        qty = tempqty;
-        amount = tempamount;
-        size1 = tempsize;
-        orderId = temporderid;
-        Orderstatus = tempstatus;
-
+        arr = temp;
+        return arr;
     }
 
-    public static void extend() {
-
-        String[] tempPhoneN = new String[phoenumber.length + 1];
-        int[] tempqty = new int[qty.length + 1];
-        double[] tempamount = new double[amount.length + 1];
-        String[] tempsize = new String[size1.length + 1];
-        String[] temporderid = new String[orderId.length + 1];
-        String[] tempstatus = new String[Orderstatus.length + 1];
-
-        for (int i = 0; i < phoenumber.length; i++) {
-            tempPhoneN[i] = phoenumber[i];
-            tempqty[i] = qty[i];
-            tempamount[i] = amount[i];
-            tempsize[i] = size1[i];
-            temporderid[i] = orderId[i];
-            tempstatus[i] = Orderstatus[i];
-        }
-
-        phoenumber = tempPhoneN;
-        qty = tempqty;
-        amount = tempamount;
-        size1 = tempsize;
-        orderId = temporderid;
-        Orderstatus = tempstatus;
-
-    }
-
-    /**
-     *
-     */
     public static void home() {
 
         do {
@@ -145,22 +145,22 @@ public class FashionShop {
             System.out.println("\n");
             switch (homenum) {
                 case 1:
-PlaceOder();
+                    PlaceOder();
                     break;
                 case 2:
-searchCustomer();
+                    searchCustomer();
                     break;
                 case 3:
-searchOrder();
+                    searchOrder();
                     break;
                 case 4:
-Report();
+                    Report();
                     break;
                 case 5:
-setOrderStatus();
+                    setOrderStatus();
                     break;
                 case 6:
-DeleteOrder();
+                    DeleteOrder();
                     break;
                 default:
                     System.out.println("\t\tEnter correct Number....\n\n");
@@ -271,7 +271,7 @@ DeleteOrder();
                         } else {
                             System.out.println("Invalid Input...");
                             count--;
-//                            clearConsole();
+                            clearConsole();
                             continue LPLACEORDER;
                         }
 
@@ -282,13 +282,8 @@ DeleteOrder();
 
                         switch (place) {
                             case 'Y':
-                                extend();
-                                orderId[orderId.length - 1] = nowID;
-                                phoenumber[orderId.length - 1] = PN;
-                                size1[orderId.length - 1] = size;
-                                qty[orderId.length - 1] = qty1;
-                                amount[orderId.length - 1] = qamount;
-                                Orderstatus[orderId.length - 1] = Status[0];
+                                Customers = extendIntArrays(Customers);
+                                Customers[Customers.length - 1] = new Customer(nowID, PN, size, qty1, qamount, finalStatus[0]);
                                 System.out.println("Order placeed..!");
 
                                 break;
@@ -351,28 +346,28 @@ DeleteOrder();
         int xlcount = 0;
         int xxlcount = 0;
 //        int tem[] = new int[phoenumber.length];
-        for (int j = 0; j < phoenumber.length; j++) {
+        for (int j = 0; j < Customers.length; j++) {
 
-            if (phoenumber[j].equals(searchnum)) {
+            if (Customers[j].getphonenumber().equals(searchnum)) {
 
-                switch (size1[j]) {
+                switch (Customers[j].getsize()) {
                     case "XS":
-                        xscount += qty[j];
+                        xscount += Customers[j].getqty();
                         break;
                     case "S":
-                        scount += qty[j];
+                        scount += Customers[j].getqty();
                         break;
                     case "M":
-                        mcount += qty[j];
+                        mcount += Customers[j].getqty();
                         break;
                     case "L":
-                        lcount += qty[j];
+                        lcount += Customers[j].getqty();
                         break;
                     case "XL":
-                        xlcount += qty[j];
+                        xlcount += Customers[j].getqty();
                         break;
                     case "XXL":
-                        xxlcount += qty[j];
+                        xxlcount += Customers[j].getqty();
                         break;
 
                 }
@@ -421,7 +416,7 @@ DeleteOrder();
 
     public static void searchOrder() {
 
-//     clearConsole();
+        clearConsole();
         Lsearchorder:
         do {
             System.out.println("""
@@ -439,10 +434,11 @@ DeleteOrder();
             boolean found = false;
             int x = 0;
 
-            for (int i = 0; i < orderId.length; i++) {
-                if (orderId[i].equals(EnterID)) {
+            for (int i = 0; i < Customers.length; i++) {
+                if (Customers[i].getid().equals(EnterID)) {
                     x = i;
 //                    System.out.println(i);
+                    Customers[i].showoder(i);
                     found = true;
                     break;
                 }
@@ -450,12 +446,6 @@ DeleteOrder();
             }
 
             if (found) {
-                System.out.println("");
-                System.out.printf("%-16s%2s%n", "Phone number", ": " + phoenumber[x]);
-                System.out.printf("%-16s%2s%n", "Size", ": " + size1[x]);
-                System.out.printf("%-16s%2s%n", "QTY", ": " + qty[x]);
-                System.out.printf("%-16s%2s%n", "Amount", ": " + amount[x]);
-                System.out.printf("%-16s%2s%n", "Status", ": " + Orderstatus[x] + "\n");
 
                 LDOwANTSEaRCHO:
                 do {
@@ -497,9 +487,9 @@ DeleteOrder();
         } while (true);
 
     }
-    
-      public static void Report() {
-//        clearConsole();
+
+    public static void Report() {
+        clearConsole();
         Lreport:
         do {
             System.out.println("	  _____                       _       \n"
@@ -525,7 +515,7 @@ DeleteOrder();
                     AllOrders();
                     break;
                 case 3:
-                    
+
                     break;
                 default:
                     System.out.println("Enter correct Number....");
@@ -533,11 +523,9 @@ DeleteOrder();
             }
         } while (true);
     }
-      
-      
-      
-       public static void BestInCustomers() {
-//        clearConsole();
+
+    public static void BestInCustomers() {
+        clearConsole();
         System.out.println("	  ____            _     _____          _____          _                                \n"
                 + "	 |  _ \\          | |   |_   _|        / ____|        | |                               \n"
                 + "	 | |_) | ___  ___| |_    | |  _ __   | |    _   _ ___| |_ ___  _ __ ___   ___ _ __ ___ \n"
@@ -554,27 +542,26 @@ DeleteOrder();
                            \t\t|     Customer ID     |       ALL QTY      |      Total Amount     |
                            \t\t+---------------------+--------------------+-----------------------+ 
                            """);
-        
-        
+
         String phone[] = new String[0];
         int qtys[] = new int[0];
         double total[] = new double[0];
-        
-         l1:
-        for (int i = 0; i < phoenumber.length; i++) {
+
+        l1:
+        for (int i = 0; i < Customers.length; i++) {
             for (int j = 0; j < phone.length; j++) {
-                if (phoenumber[i].equalsIgnoreCase(phone[j])) {
-                    qtys[j] += qty[i];
-                    total[j] += amount[i];
+                if (Customers[i].getphonenumber().equalsIgnoreCase(phone[j])) {
+                    qtys[j] += Customers[i].getqty();
+                    total[j] += Customers[i].getamount();
                     continue l1;
                 }
             }
             phone = extendStringArrays(phone);
             qtys = extendIntArrays(qtys);
             total = extendDoubleArrays(total);
-            phone[phone.length - 1] = phoenumber[i];
-            qtys[qtys.length - 1] = qty[i];
-            total[total.length - 1] = amount[i];
+            phone[phone.length - 1] = Customers[i].getphonenumber();
+            qtys[qtys.length - 1] = Customers[i].getqty();
+            total[total.length - 1] = Customers[i].getamount();
         }
         for (int i = 0; i < qtys.length - 1; i++) {
             for (int j = i + 1; j < qtys.length; j++) {
@@ -593,21 +580,17 @@ DeleteOrder();
                 }
             }
         }
-        
-         
 
-        for (int i = 0; i < phoenumber.length; i++) {
+        for (int i = 0; i < Customers.length; i++) {
             System.out.printf("\t\t|  %-19s|       %11d  |     %16.2f  |%n", phone[i], qtys[i], total[i]);
 
         }
         System.out.println(" \t\t+---------------------+--------------------+-----------------------+\n\n");
 
     }
-       
-       
-       
-      public static void AllOrders() {
-//        clearConsole();
+
+    public static void AllOrders() {
+        clearConsole();
         System.out.println("\t\t  _        __                       ____          _                          ");
         System.out.println("\t\t  \\ \\    / (_)                     / __ \\        | |                         ");
         System.out.println("\t\t   \\ \\  / / _  _____        __    | |  | |_ __ __| | ____ _ __               ");
@@ -619,22 +602,22 @@ DeleteOrder();
         System.out.printf("\t\t|  %-10s| %-14s| %-6s|  %-5s|   %-11s| %-14s|\n", "Order ID", "Phone Number", "Size", "QTY", " Amount", "    Status");
         System.out.printf("\t\t+%-12s+%-13s+%-7s+%-7s+%-13s+%-15s+\n", "------------", "---------------", "-------", "-------", "--------------", "---------------");
 
-        String tempOrders[] = new String[orderId.length];
-        String tempphoneNumbers[] = new String[phoenumber.length];
-        String tempsizes[] = new String[size1.length];
-        int tempqtys[] = new int[qty.length];
-        double tempamounts[] = new double[amount.length];
-        String tempstatuss[] = new String[Orderstatus.length];
-        
-        for (int i = orderId.length - 1; i >= 0; i--) {
-            tempOrders[orderId.length - 1 - i] = orderId[i];
-            tempphoneNumbers[orderId.length - 1 - i] = phoenumber[i];
-            tempsizes[orderId.length - 1 - i] = size1[i];
-            tempqtys[orderId.length - 1 - i] = qty[i];
-            tempamounts[orderId.length - 1 - i] = amount[i];
-            tempstatuss[orderId.length - 1 - i] = Orderstatus[i];
+        String tempOrders[] = new String[Customers.length];
+        String tempphoneNumbers[] = new String[Customers.length];
+        String tempsizes[] = new String[Customers.length];
+        int tempqtys[] = new int[Customers.length];
+        double tempamounts[] = new double[Customers.length];
+        String tempstatuss[] = new String[Customers.length];
+
+        for (int i = Customers.length - 1; i >= 0; i--) {
+            tempOrders[Customers.length - 1 - i] = Customers[i].getid();
+            tempphoneNumbers[Customers.length - 1 - i] = Customers[i].getphonenumber();
+            tempsizes[Customers.length - 1 - i] = Customers[i].getsize();
+            tempqtys[Customers.length - 1 - i] = Customers[i].getqty();
+            tempamounts[Customers.length - 1 - i] = Customers[i].getamount();
+            tempstatuss[Customers.length - 1 - i] = Customers[i].getstatus();
         }
-        for (int i = 0; i < orderId.length; i++) {
+        for (int i = 0; i < Customers.length; i++) {
             System.out.printf("\t\t|  %-10s| %-14s|  %-5s|  %-5s|   %-11.2f| %-14s|\n", tempOrders[i], tempphoneNumbers[i], tempsizes[i], tempqtys[i], tempamounts[i], tempstatuss[i]);
         }
         System.out.printf("\t\t+%-12s+%-13s+%-7s+%-7s+%-13s+%-15s+\n", "------------", "---------------", "-------", "-------", "--------------", "---------------");
@@ -645,12 +628,11 @@ DeleteOrder();
                 home();
                 break;
             }
-//            clearLinesAbove(3);
+            clearline(3);
         }
-    }  
-      
-      
-       public static void setOrderStatus() {
+    }
+
+    public static void setOrderStatus() {
         clearConsole();
         System.out.println("\t\t      ___           _                   ______ _        _                         ");
         System.out.println("\t\t    / __ \\        | |                 / _____| |      | |                        ");
@@ -662,14 +644,14 @@ DeleteOrder();
         System.out.print("\t\tEnter order ID : ");
         String searchId = input.next();
         boolean isvalid = false;
-        for (int i = 0; i < orderId.length; i++) {
-            if (searchId.equalsIgnoreCase(orderId[i])) {
+        for (int i = 0; i < Customers.length; i++) {
+            if (searchId.equalsIgnoreCase(Customers[i].getid())) {
                 showOrderDetails(i);
                 isvalid = true;
                 System.out.print("\n\n\tDo you want to change this status? (y/n) : ");
                 char op = input.next().charAt(0);
                 if (op == 'y' || op == 'Y') {
-                    if (Orderstatus[i].equalsIgnoreCase("Processing")) {
+                    if (Customers[i].getstatus().equalsIgnoreCase("Processing")) {
                         System.out.printf("\n\t\t[1]  Order Delivering  \n\t\t[2] Order Delivered ");
                         int option = 1;
                         System.out.println("");
@@ -683,16 +665,16 @@ DeleteOrder();
                         } while (true);
                         switch (option) {
                             case 1:
-                                Orderstatus[i] = finalStatus[1];
+                                Customers[i].setstatus(finalStatus[1]);
                                 System.out.println("\n\t\tStatus Updated..!");
                                 break;
                             case 2:
-                                Orderstatus[i] = finalStatus[2];
+                                Customers[i].setstatus(finalStatus[2]);
                                 System.out.println("\n\t\tStatus Updated..!");
                                 break;
                         }
 
-                    } else if (Orderstatus[i].equalsIgnoreCase("Delivering")) {
+                    } else if (Customers[i].getstatus().equalsIgnoreCase("Delivering")) {
                         System.out.printf(" \n\t\t[1] Order Delivered ");
                         int option = 1;
                         do {
@@ -704,7 +686,7 @@ DeleteOrder();
                             System.out.println("\n\t\tInvalid Input..");
                         } while (true);
                         if (option == 1) {
-                            Orderstatus[i] = finalStatus[2];
+                            Customers[i].setstatus(finalStatus[2]);
                             System.out.println("\n\t\tStatus Updated..!");
                             break;
                         }
@@ -728,21 +710,16 @@ DeleteOrder();
             home();
         }
     }
-      
-       
-           public static void showOrderDetails(int i) {
-        System.out.print("\n\tPhone Number : " + phoenumber[i]);
-        System.out.print("\n\tSize         : " + size1[i]);
-        System.out.print("\n\tQTY          : " + qty[i]);
-        System.out.print("\n\tAmount       : " + amount[i]);
-        System.out.print("\n\tStatus       : " + Orderstatus[i]);
+
+    public static void showOrderDetails(int i) {
+        System.out.print("\n\tPhone Number : " + Customers[i].getphonenumber());
+        System.out.print("\n\tSize         : " + Customers[i].getsize());
+        System.out.print("\n\tQTY          : " + Customers[i].getqty());
+        System.out.print("\n\tAmount       : " + Customers[i].getamount());
+        System.out.print("\n\tStatus       : " + Customers[i].getstatus());
     }
-      
-      
-      
-      
-      
-       public static void DeleteOrder() {
+
+    public static void DeleteOrder() {
         clearConsole();
         System.out.println("""
                            \t  _____       _      _          ____          _           
@@ -756,69 +733,43 @@ DeleteOrder();
         System.out.printf("\n\n\t%-20s%2s", "Enter Order ID", ": ");
         String inputId = input.next();
         int s = 0;
+        Customer[] temp = new Customer[Customers.length - 1];
         boolean found = false;
 
-        for (String id : orderId) {
-            if (id.equals(inputId)) {
-                for (int i = 0; i < orderId.length; i++) {
-                    if (id == orderId[i]) {
-                        s = i;
+        for (int i = 0; Customers.length < 10; i++) {
+
+            if (inputId.equalsIgnoreCase(Customers[i].getid())) {
+                Customers[i].showoder(i);
+                System.out.print("\n\nDo You want to delete this order? (Y/N) : ");
+                char op = input.next().toUpperCase().charAt(0);
+
+                if (op == 'Y') {
+                    for (int j = 0; j < Customers.length - 1; j++) {
+                        temp[j] = Customers[j + 1];
                     }
+                    Customers = temp;
                 }
                 found = true;
                 break;
+            } else if (i < Customers.length - 1) {
+                temp[i] = Customers[i];
             }
+
         }
-        if (found) {
-            System.out.println("");
-            System.out.printf("%-16s%2s%n", "Phone number", ": " + phoenumber[s]);
-            System.out.printf("%-16s%2s%n", "Size", ": " + size1[s]);
-            System.out.printf("%-16s%2s%n", "QTY", ": " + qty[s]);
-            System.out.printf("%-16s%2s%n", "Amount", ": " + amount[s]);
-            System.out.printf("%-16s%2s%n", "Status", ": " + Orderstatus[s] + "\n");
 
-            if (Orderstatus[s].equalsIgnoreCase(Status[0])) {
-                System.out.println("\n\n");
-                L0:
-                while (true) {
-                    System.out.printf("\t%-30s%2s", "Do you want to delete this order (Y/N) ?", ": ");
-                    char op = input.next().charAt(0);
-                    switch (op) {
-                        case 'y', 'Y' -> {
-                            System.out.println("\n\t\tOrder Deleted..!");
-                            for (int i = s; i < orderId.length - 1; i++) {
-                                phoenumber[i] = phoenumber[i + 1];
-                                size1[i] = size1[i + 1];
-                                qty[i] = qty[i + 1];
-                                amount[i] = amount[i + 1];
-                                orderId[i] = orderId[i + 1];
-                                orderId[i] = orderId[i + 1];
-
-                            }   //                        index--;
-                            declement();
-                            System.out.println("\n");
-                            deleteOption();
-                        }
-                        case 'n', 'N' ->
-                            home();
-                        default -> {
-
-                            continue L0;
-                        }
-                    }
-                }
-            } else if (Orderstatus[s].equalsIgnoreCase(Status[1])) {
-                System.out.println("\n\n\t\tCan't delete this order , Order already delivering..! \n\n");
-                deleteOption();
-            } else {
-                System.out.println("\n\n\t\tCan't delete this order , Order already deliverd..! \n\n");
-                deleteOption();
-            }
-        }
         if (!found) {
-            System.out.println("\n\t\tInvalid ID..\n\n");
-            deleteOption();
+            System.out.println("\n\t\tInvalid ID...");
         }
+        System.out.print("\n\nDo You want to delete another order? (Y/N) : ");
+        char opt = input.next().toUpperCase().charAt(0);
+        if (opt == 'Y') {
+
+            DeleteOrder();
+
+        } else if (opt == 'N') {
+            home();
+        }
+
     }
 
     public static void deleteOption() {
@@ -837,14 +788,8 @@ DeleteOrder();
             }
         }
     }
-       
-       
-       
-    
-    
-       
-       
-         public static String[] extendStringArrays(String[] arr) {
+
+    public static String[] extendStringArrays(String[] arr) {
         String temp[] = new String[arr.length + 1];
         for (int i = 0; i < arr.length; i++) {
             temp[i] = arr[i];
@@ -870,17 +815,9 @@ DeleteOrder();
         arr = temp;
         return arr;
     }
-    
 
     public static void main(String[] args) {
-        
         home();
-//        PlaceOder();
-//        searchCustomer();
-//        searchOrder();
-//Report();
-//BestInCustomers();
-//AllOrders();
     }
 
 }
